@@ -1,0 +1,12 @@
+# Aktifkan CORS agar API bisa diakses dari luar (misalnya frontend JavaScript)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+</IfModule>
+
+# Hapus ekstensi .php dari URL (opsional, hanya jika kamu ingin /produk/read bukan /produk/read.php)
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L,QSA]
